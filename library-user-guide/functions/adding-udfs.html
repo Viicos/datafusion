@@ -24,7 +24,7 @@
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css?v=1140d252" />
-    <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=c6d785ac" />
+    <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=955f83bf" />
     
     <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
@@ -193,6 +193,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../user-guide/cli/datasources.html">
      Local Files / Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../user-guide/cli/functions.html">
+     CLI Specific Functions
     </a>
    </li>
   </ul>
@@ -448,7 +453,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../contributor-guide/roadmap.html">
-   Roadmap
+   Roadmap and Improvement Proposals
   </a>
  </li>
  <li class="toctree-l1">
@@ -483,15 +488,27 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../contributor-guide/gsoc_application_guidelines.html">
-   GSoC Application Guidelines
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributor-guide/gsoc/index.html">
+   Google Summer of Code (GSOC)
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../contributor-guide/gsoc_project_ideas.html">
-   GSoC Project Ideas
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributor-guide/gsoc/gsoc_application_guidelines_2025.html">
+     GSoC Application Guidelines (2025)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributor-guide/gsoc/gsoc_project_ideas_2025.html">
+     GSoC Project Ideas (2025)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -501,7 +518,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="https://arrow.apache.org/ballista/">
+  <a class="reference external" href="https://datafusion.apache.org/ballista/">
    DataFusion Ballista
   </a>
  </li>
@@ -776,7 +793,7 @@ For production code, you may want to check, for example, that <code class="docut
 <span class="cp">    description = </span><span class="s">&quot;Add one udf&quot;</span><span class="cp">,</span>
 <span class="cp">    syntax_example = </span><span class="s">&quot;add_one(1)&quot;</span>
 <span class="cp">)]</span>
-<span class="cp">#[derive(Debug)]</span>
+<span class="cp">#[derive(Debug, PartialEq, Eq, Hash)]</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">AddOne</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">signature</span><span class="p">:</span><span class="w"> </span><span class="nc">Signature</span><span class="p">,</span>
 <span class="p">}</span>
@@ -941,7 +958,7 @@ UDF.</p>
 </ol>
 <section id="adding-by-impl-asyncscalarudfimpl">
 <h3>Adding by <code class="docutils literal notranslate"><span class="pre">impl</span> <span class="pre">AsyncScalarUDFImpl</span></code><a class="headerlink" href="#adding-by-impl-asyncscalarudfimpl" title="Link to this heading">¶</a></h3>
-<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[derive(Debug)]</span>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[derive(Debug, PartialEq, Eq, Hash)]</span>
 <span class="k">pub</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">AsyncUpper</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">signature</span><span class="p">:</span><span class="w"> </span><span class="nc">Signature</span><span class="p">,</span>
 <span class="p">}</span>
@@ -1001,13 +1018,11 @@ UDF.</p>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="sd">/// This method is called to execute the async UDF and is similar</span>
-<span class="w">    </span><span class="sd">/// to the normal `invoke_with_args` except it returns an `ArrayRef`</span>
-<span class="w">    </span><span class="sd">/// instead of `ColumnarValue` and is `async`.</span>
+<span class="w">    </span><span class="sd">/// to the normal `invoke_with_args` except it is `async`.</span>
 <span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">invoke_async_with_args</span><span class="p">(</span>
 <span class="w">        </span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span>
 <span class="w">        </span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="nc">ScalarFunctionArgs</span><span class="p">,</span>
-<span class="w">        </span><span class="n">_option</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">ConfigOptions</span><span class="p">,</span>
-<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">ArrayRef</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">ColumnarValue</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">args</span><span class="p">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="w">        </span><span class="c1">// This function simply implements a simple string to uppercase conversion</span>
 <span class="w">        </span><span class="c1">// but can be used for any async operation such as network calls.</span>
@@ -1022,7 +1037,7 @@ UDF.</p>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">            </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">internal_err</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;Expected a string argument, got {:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">),</span>
 <span class="w">        </span><span class="p">};</span>
-<span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">ColumnarValue</span><span class="p">::</span><span class="n">from</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

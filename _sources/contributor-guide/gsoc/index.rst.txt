@@ -15,14 +15,22 @@
 .. specific language governing permissions and limitations
 .. under the License.
 
-DataFusion CLI
-==============
+Google Summer of Code (GSOC)
+============================
+
+DataFusion has participated in
+`Google Summer of Code (GSOC) <https://summerofcode.withgoogle.com/>`_
+since 2025. GSOC is a global program that offers students stipends to
+write code for open source projects.
+
+If you are a interested in contributing to DataFusion, we encourage you
+to apply. You can find more information about the application process and
+project ideas in the sections below.
+
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
-   overview
-   installation
-   usage
-   datasources
-   functions
+   gsoc_application_guidelines_2025
+   gsoc_project_ideas_2025
+

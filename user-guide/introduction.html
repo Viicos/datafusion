@@ -24,7 +24,7 @@
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css?v=1140d252" />
-    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=c6d785ac" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=955f83bf" />
     
     <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
@@ -193,6 +193,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="cli/datasources.html">
      Local Files / Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cli/functions.html">
+     CLI Specific Functions
     </a>
    </li>
   </ul>
@@ -448,7 +453,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../contributor-guide/roadmap.html">
-   Roadmap
+   Roadmap and Improvement Proposals
   </a>
  </li>
  <li class="toctree-l1">
@@ -483,15 +488,27 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributor-guide/gsoc_application_guidelines.html">
-   GSoC Application Guidelines
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contributor-guide/gsoc/index.html">
+   Google Summer of Code (GSOC)
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributor-guide/gsoc_project_ideas.html">
-   GSoC Project Ideas
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributor-guide/gsoc/gsoc_application_guidelines_2025.html">
+     GSoC Application Guidelines (2025)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributor-guide/gsoc/gsoc_project_ideas_2025.html">
+     GSoC Project Ideas (2025)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -501,7 +518,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="https://arrow.apache.org/ballista/">
+  <a class="reference external" href="https://datafusion.apache.org/ballista/">
    DataFusion Ballista
   </a>
  </li>
@@ -692,17 +709,17 @@ latency).</p>
 <p>Here are some example systems built using DataFusion:</p>
 <ul class="simple">
 <li><p>Specialized Analytical Database systems such as <a class="reference external" href="https://github.com/apache/incubator-horaedb">HoraeDB</a> and more general Apache Spark like system such as <a class="reference external" href="https://github.com/apache/datafusion-ballista">Ballista</a></p></li>
-<li><p>New query language engines such as <a class="reference external" href="https://github.com/prql/prql-query">prql-query</a> and accelerators such as <a class="reference external" href="https://vegafusion.io/" title="if you know of another project, please submit a PR to add a link!">VegaFusion</a></p></li>
+<li><p>New query language engines such as <a class="reference external" href="https://github.com/prql/prql-query">prql-query</a> and accelerators such as <a class="reference external" href="https://vegafusion.io/">VegaFusion</a></p></li>
 <li><p>Research platform for new Database Systems, such as <a class="reference external" href="https://github.com/flock-lab/flock">Flock</a></p></li>
-<li><p>SQL support to another library, such as <a class="reference external" href="https://github.com/dask-contrib/dask-sql">dask sql</a></p></li>
+<li><p>SQL support to another library, such as <a class="reference external" href="https://vortex.dev/" title="if you know of another project, please submit a PR to add a link!">Vortex</a></p></li>
 <li><p>Streaming data platforms such as <a class="reference external" href="https://synnada.ai/">Synnada</a></p></li>
 <li><p>Tools for reading / sorting / transcoding Parquet, CSV, AVRO, and JSON files such as <a class="reference external" href="https://github.com/timvw/qv">qv</a></p></li>
-<li><p>Native Spark runtime replacement such as <a class="reference external" href="https://github.com/blaze-init/blaze">Blaze</a></p></li>
+<li><p>Native Spark runtime replacement such as <a class="reference external" href="https://github.com/apache/auron">Auron</a></p></li>
 </ul>
 <p>By using DataFusion, projects are freed to focus on their specific
 features, and avoid reimplementing general (but still necessary)
 features such as an expression representation, standard optimizations,
-parellelized streaming execution plans, file format support, etc.</p>
+parallelized streaming execution plans, file format support, etc.</p>
 </section>
 <section id="known-users">
 <h2>Known Users<a class="headerlink" href="#known-users" title="Link to this heading">¶</a></h2>
@@ -711,15 +728,15 @@ parellelized streaming execution plans, file format support, etc.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/ArroyoSystems/arroyo">Arroyo</a> Distributed stream processing engine in Rust</p></li>
 <li><p><a class="reference external" href="https://github.com/arkflow-rs/arkflow">ArkFlow</a> High-performance Rust stream processing engine</p></li>
+<li><p><a class="reference external" href="https://github.com/apache/auron">Auron</a> The Auron accelerator for big data engine (e.g., Spark, Flink) leverages native vectorized execution to accelerate query processing</p></li>
 <li><p><a class="reference external" href="https://github.com/apache/datafusion-ballista">Ballista</a> Distributed SQL Query Engine</p></li>
-<li><p><a class="reference external" href="https://github.com/kwai/blaze">Blaze</a> The Blaze accelerator for Apache Spark leverages native vectorized execution to accelerate query processing</p></li>
 <li><p><a class="reference external" href="https://github.com/cnosdb/cnosdb">CnosDB</a> Open Source Distributed Time Series Database</p></li>
 <li><p><a class="reference external" href="https://github.com/apache/datafusion-comet">Comet</a> Apache Spark native query execution plugin</p></li>
 <li><p><a class="reference external" href="https://github.com/cube-js/cube.js/tree/master/rust">Cube Store</a> Cube’s universal semantic layer platform is the next evolution of OLAP technology for AI, BI, spreadsheets, and embedded analytics</p></li>
-<li><p><a class="reference external" href="https://github.com/dask-contrib/dask-sql">Dask SQL</a> Distributed SQL query engine in Python</p></li>
 <li><p><a class="reference external" href="https://github.com/datafusion-contrib/datafusion-dft">datafusion-dft</a> Batteries included CLI, TUI, and server implementations for DataFusion.</p></li>
+<li><p><a class="reference external" href="https://github.com/dbt-labs/dbt-fusion">dbt Fusion engine</a> The dbt Fusion engine, written in Rust, designed for speed and correctness with a native SQL understanding across DWH SQL dialects.</p></li>
 <li><p><a class="reference external" href="https://github.com/delta-io/delta-rs">delta-rs</a> Native Rust implementation of Delta Lake</p></li>
-<li><p><a class="reference external" href="https://github.com/wheretrue/exon">Exon</a> Analysis toolkit for life-science applications</p></li>
+<li><p><a class="reference external" href="https://www.enterprisedb.com/products/analytics">EDB Postgres Lakehouse</a> built with <a class="reference external" href="https://github.com/splitgraph/seafowl">Seafowl</a></p></li>
 <li><p><a class="reference external" href="https://github.com/feldera/feldera">Feldera</a> Fast query engine for incremental computation</p></li>
 <li><p><a class="reference external" href="https://funnel.io/">Funnel</a> Data Platform powering Marketing Intelligence applications.</p></li>
 <li><p><a class="reference external" href="https://github.com/GlareDB/glaredb">GlareDB</a> Fast SQL database for querying and analyzing distributed data.</p></li>
@@ -727,7 +744,7 @@ parellelized streaming execution plans, file format support, etc.</p>
 <li><p><a class="reference external" href="https://github.com/apache/incubator-horaedb">HoraeDB</a> Distributed Time-Series Database</p></li>
 <li><p><a class="reference external" href="https://github.com/apache/iceberg-rust">Iceberg-rust</a> Rust implementation of Apache Iceberg</p></li>
 <li><p><a class="reference external" href="https://github.com/influxdata/influxdb">InfluxDB</a> Time Series Database</p></li>
-<li><p><a class="reference external" href="https://github.com/kamu-data/kamu-cli/">Kamu</a> Planet-scale streaming data pipeline</p></li>
+<li><p><a class="reference external" href="https://github.com/kamu-data/kamu-cli">Kamu</a> Planet-scale streaming data pipeline</p></li>
 <li><p><a class="reference external" href="https://github.com/lakesoul-io/LakeSoul">LakeSoul</a> Open source LakeHouse framework with native IO in Rust.</p></li>
 <li><p><a class="reference external" href="https://github.com/lancedb/lance">Lance</a> Modern columnar data format for ML</p></li>
 <li><p><a class="reference external" href="https://github.com/openobserve/openobserve">OpenObserve</a> Distributed cloud native observability platform</p></li>
@@ -735,20 +752,26 @@ parellelized streaming execution plans, file format support, etc.</p>
 <li><p><a class="reference external" href="https://github.com/parseablehq/parseable">Parseable</a> Log storage and observability platform</p></li>
 <li><p><a class="reference external" href="https://polygon.io/">Polygon.io</a> Stock Market API</p></li>
 <li><p><a class="reference external" href="https://github.com/timvw/qv">qv</a> Quickly view your data</p></li>
+<li><p><a class="reference external" href="https://blog.cloudflare.com/r2-sql-deep-dive/">R2 Query Engine</a> Cloudflare’s distributed engine for querying data in Iceberg Catalogs</p></li>
+<li><p><a class="reference external" href="https://rerun.io/">rerun.io</a> Visualize and query robotics logs and transform them into training data.</p></li>
 <li><p><a class="reference external" href="https://github.com/restatedev">Restate</a> Easily build resilient applications using distributed durable async/await</p></li>
 <li><p><a class="reference external" href="https://github.com/roapi/roapi">ROAPI</a> Create full-fledged APIs for slowly moving datasets without writing a single line of code</p></li>
 <li><p><a class="reference external" href="https://github.com/lakehq/sail">Sail</a> Unifying stream, batch and AI workloads with Apache Spark compatibility</p></li>
-<li><p><a class="reference external" href="https://github.com/splitgraph/seafowl">Seafowl</a> CDN-friendly analytical database</p></li>
+<li><p><a class="reference external" href="https://github.com/apache/sedona-db">SedonaDB</a> A single-node analytical database engine with geospatial as a first-class citizen</p></li>
 <li><p><a class="reference external" href="https://github.com/gchq/sleeper">Sleeper</a> Serverless, cloud-native, log-structured merge tree based, scalable key-value store</p></li>
 <li><p><a class="reference external" href="https://github.com/spiceai/spiceai">Spice.ai</a> Building blocks for data-driven AI applications</p></li>
 <li><p><a class="reference external" href="https://synnada.ai/">Synnada</a> Streaming-first framework for data products</p></li>
 <li><p><a class="reference external" href="https://vegafusion.io/">VegaFusion</a> Server-side acceleration for the <a class="reference external" href="https://vega.github.io/">Vega</a> visualization grammar</p></li>
+<li><p><a class="reference external" href="https://vortex.dev/" title="if you know of another project, please submit a PR to add a link!">Vortex</a> An extensible, state of the art columnar file format</p></li>
 <li><p><a class="reference external" href="https://telemetry.sh/">Telemetry</a> Structured logging made easy</p></li>
+<li><p><a class="reference external" href="https://github.com/xorq-labs/xorq/">Xorq</a> Xorq is a multi-engine batch transformation framework built on Ibis, DataFusion and Arrow</p></li>
 </ul>
 <p>Here are some less active projects that used DataFusion:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/datafusion-contrib/bdt">bdt</a> Boring Data Tool</p></li>
 <li><p><a class="reference external" href="https://github.com/cloudfuse-io/buzz-rust">Cloudfuse Buzz</a></p></li>
+<li><p><a class="reference external" href="https://github.com/dask-contrib/dask-sql">Dask SQL</a> Distributed SQL query engine in Python</p></li>
+<li><p><a class="reference external" href="https://github.com/wheretrue/exon">Exon</a> Analysis toolkit for life-science applications</p></li>
 <li><p><a class="reference external" href="https://github.com/flock-lab/flock">Flock</a></p></li>
 <li><p><a class="reference external" href="https://github.com/tensorbase/tensorbase">Tensorbase</a></p></li>
 </ul>

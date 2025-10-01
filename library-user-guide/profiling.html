@@ -24,7 +24,7 @@
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css?v=1140d252" />
-    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=c6d785ac" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=955f83bf" />
     
     <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
@@ -193,6 +193,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../user-guide/cli/datasources.html">
      Local Files / Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../user-guide/cli/functions.html">
+     CLI Specific Functions
     </a>
    </li>
   </ul>
@@ -448,7 +453,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../contributor-guide/roadmap.html">
-   Roadmap
+   Roadmap and Improvement Proposals
   </a>
  </li>
  <li class="toctree-l1">
@@ -483,15 +488,27 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributor-guide/gsoc_application_guidelines.html">
-   GSoC Application Guidelines
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contributor-guide/gsoc/index.html">
+   Google Summer of Code (GSOC)
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributor-guide/gsoc_project_ideas.html">
-   GSoC Project Ideas
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributor-guide/gsoc/gsoc_application_guidelines_2025.html">
+     GSoC Application Guidelines (2025)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributor-guide/gsoc/gsoc_project_ideas_2025.html">
+     GSoC Project Ideas (2025)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -501,7 +518,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="https://arrow.apache.org/ballista/">
+  <a class="reference external" href="https://datafusion.apache.org/ballista/">
    DataFusion Ballista
   </a>
  </li>
@@ -678,7 +695,7 @@ in images such as this:</p>
 </section>
 <section id="step-3-running-the-flamegraph-tool">
 <h3>Step 3: Running the Flamegraph Tool<a class="headerlink" href="#step-3-running-the-flamegraph-tool" title="Link to this heading">¶</a></h3>
-<p>To generate a flamegraph, you’ll need to use the – separator to pass arguments to the binary you’re profiling. For datafusion-cli, you need to make sure to run the command with sudo permissions (especially on macOS, where DTrace requires elevated privileges).</p>
+<p>To generate a flamegraph, you’ll need to use the <code class="docutils literal notranslate"><span class="pre">--</span></code> separator to pass arguments to the binary you’re profiling. For datafusion-cli, you need to make sure to run the command with sudo permissions (especially on macOS, where DTrace requires elevated privileges).</p>
 <p>Here is a general example:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>flamegraph<span class="w"> </span>--<span class="w"> </span>datafusion-cli<span class="w"> </span>-f<span class="w"> </span>&lt;path_to_sql_file/sql_file.sql&gt;
 </pre></div>

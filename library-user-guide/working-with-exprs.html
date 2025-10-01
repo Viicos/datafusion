@@ -24,7 +24,7 @@
     
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/pydata-sphinx-theme.css?v=1140d252" />
-    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=c6d785ac" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=955f83bf" />
     
     <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
@@ -193,6 +193,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../user-guide/cli/datasources.html">
      Local Files / Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../user-guide/cli/functions.html">
+     CLI Specific Functions
     </a>
    </li>
   </ul>
@@ -448,7 +453,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../contributor-guide/roadmap.html">
-   Roadmap
+   Roadmap and Improvement Proposals
   </a>
  </li>
  <li class="toctree-l1">
@@ -483,15 +488,27 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributor-guide/gsoc_application_guidelines.html">
-   GSoC Application Guidelines
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../contributor-guide/gsoc/index.html">
+   Google Summer of Code (GSOC)
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../contributor-guide/gsoc_project_ideas.html">
-   GSoC Project Ideas
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributor-guide/gsoc/gsoc_application_guidelines_2025.html">
+     GSoC Application Guidelines (2025)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../contributor-guide/gsoc/gsoc_project_ideas_2025.html">
+     GSoC Project Ideas (2025)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -501,7 +518,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="https://arrow.apache.org/ballista/">
+  <a class="reference external" href="https://datafusion.apache.org/ballista/">
    DataFusion Ballista
   </a>
  </li>
@@ -866,7 +883,7 @@
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">plan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">sql</span><span class="p">(</span><span class="n">sql</span><span class="p">).</span><span class="k">await</span><span class="o">?</span><span class="p">.</span><span class="n">into_optimized_plan</span><span class="p">()</span><span class="o">?</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
 
 <span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">r#&quot;Projection: Int64(6) AS added_one</span>
-<span class="s">  EmptyRelation&quot;#</span><span class="p">;</span>
+<span class="s">  EmptyRelation: rows=1&quot;#</span><span class="p">;</span>
 
 <span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">plan</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span><span class="w"> </span><span class="n">expected</span><span class="p">);</span>
 

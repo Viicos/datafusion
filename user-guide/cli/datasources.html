@@ -24,7 +24,7 @@
     
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/pydata-sphinx-theme.css?v=1140d252" />
-    <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=c6d785ac" />
+    <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css?v=955f83bf" />
     
     <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
   
@@ -33,7 +33,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="DataFrame API" href="../dataframe.html" />
+    <link rel="next" title="CLI Specific Functions" href="functions.html" />
     <link rel="prev" title="Usage" href="usage.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -193,6 +193,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Local Files / Directories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="functions.html">
+     CLI Specific Functions
     </a>
    </li>
   </ul>
@@ -448,7 +453,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../contributor-guide/roadmap.html">
-   Roadmap
+   Roadmap and Improvement Proposals
   </a>
  </li>
  <li class="toctree-l1">
@@ -483,15 +488,27 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../contributor-guide/gsoc_application_guidelines.html">
-   GSoC Application Guidelines
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../contributor-guide/gsoc/index.html">
+   Google Summer of Code (GSOC)
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../contributor-guide/gsoc_project_ideas.html">
-   GSoC Project Ideas
-  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributor-guide/gsoc/gsoc_application_guidelines_2025.html">
+     GSoC Application Guidelines (2025)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../contributor-guide/gsoc/gsoc_project_ideas_2025.html">
+     GSoC Project Ideas (2025)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
@@ -501,7 +518,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="https://arrow.apache.org/ballista/">
+  <a class="reference external" href="https://datafusion.apache.org/ballista/">
    DataFusion Ballista
   </a>
  </li>
@@ -790,6 +807,26 @@ path, and it will automatically read all compatible files within that directory.
 <span class="p">)</span>
 <span class="n">STORED</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">PARQUET</span>
 <span class="k">LOCATION</span><span class="w"> </span><span class="s1">&#39;gs://bucket/my_table/&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When specifying a directory path that has a Hive compliant partition structure, by default, DataFusion CLI will
+automatically parse and incorporate the Hive columns and their values into the table’s schema and data. Given the
+following remote object paths:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">gs://bucket/my_table/a=1/b=100/file1.parquet</span>
+<span class="go">gs://bucket/my_table/a=2/b=200/file2.parquet</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">my_table</span></code> can be queried and filtered on the Hive columns:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">EXTERNAL</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">my_table</span>
+<span class="n">STORED</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">PARQUET</span>
+<span class="k">LOCATION</span><span class="w"> </span><span class="s1">&#39;gs://bucket/my_table/&#39;</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">my_table</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">b</span><span class="o">=</span><span class="mi">200</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------+</span>
+<span class="o">|</span><span class="w"> </span><span class="mi">1</span><span class="w">        </span><span class="o">|</span>
+<span class="o">+</span><span class="c1">----------+</span>
 </pre></div>
 </div>
 </section>
@@ -1121,10 +1158,10 @@ DataFusion<span class="w"> </span>CLI<span class="w"> </span>v21.0.0
             <p class="prev-next-title">Usage</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../dataframe.html" title="next page">
+    <a class='right-next' id="next-link" href="functions.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">DataFrame API</p>
+        <p class="prev-next-title">CLI Specific Functions</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
